@@ -31,7 +31,7 @@ jobs:
           token: ${{ github.event.client_payload.token }}
       - name: Run Veracode SCA
         env:
-          SRCCLR_API_TOKEN: ${{ secrets.VERACODE_AGENT_TOKEN }}
+          SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
         uses: veracode/veracode-sca@f910b2a575b6c43db72a46a9334d0883f7c0a91a
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
