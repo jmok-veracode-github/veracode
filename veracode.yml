@@ -10,8 +10,9 @@ veracode_static_scan:
     branches_to_run:
       - '*'
     branches_to_exclude:
+      - default_branch
   pull_request:
-    trigger: true
+    trigger: false
     action:
       - opened
       - synchronize
@@ -21,14 +22,14 @@ veracode_static_scan:
   # By selecting a branch here - Veracode will save your last scan result
   # As an App Profile - given the current name of your scanned repo
   # Use 'none' if you would not like any scans saved to the platform
-  analysis_branch: ENTER_BRANCH_NAME_HERE
+  analysis_branch: default_branch
   #If the break_build_policy_findings is set to true, the build will break if the pipeline scan finds any policy violations.      
   break_build_policy_findings: true
   #If the break_build_on_error is set to true, the build will break if the scan failed to complete in time or with an error.
   break_build_on_error: false
   #If the break_build_on_policy_error is set to true, this is the error message that will be displayed if the pipeline scan fails to complete in time or with an error.
   error_message: "Veracode SAST scan faced a problem. Please contact your Veracode administrator for more information. If you are a Veracode administrator, please contact Veracode support."
-  policy: 'Veracode Recommended Medium + SCA'
+  policy: 'Test'
   compile_locally: false
   local_compilation_workflow: na
 
@@ -77,4 +78,3 @@ veracode_iac_secrets_scan:
   break_build_on_error: true
   #If the break_build_on_policy_error is set to true, this is the error message that will be displayed if the IaC/Secrets scan fails to complete, no libraries found or on any other error.
   error_message: "Veracode SCA scan faced a problem. Please contact your Veracode administrator for more information. If you are a Veracode administrator, please contact Veracode support."
-
