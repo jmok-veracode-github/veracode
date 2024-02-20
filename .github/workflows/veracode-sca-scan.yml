@@ -29,16 +29,20 @@ jobs:
           repository: ${{ github.event.client_payload.repository.full_name }}
           ref: ${{ github.event.client_payload.sha }}
           token: ${{ github.event.client_payload.token }}
+      # - name: Run Veracode SCA
+      #   env:
+      #     SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
+      #   uses: veracode/veracode-sca@f910b2a575b6c43db72a46a9334d0883f7c0a91a
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     create-issues: false
+      #     path: '**/*'
+      #     recursive: true
       - name: Run Veracode SCA
         env:
           SRCCLR_API_TOKEN: ${{ secrets.SRCCLR_API_TOKEN }}
-        uses: veracode/veracode-sca@f910b2a575b6c43db72a46a9334d0883f7c0a91a
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          create-issues: false
-          path: '**/*'
-          recursive: true
-          workspaceslug: '700tl4W'
+        run: |
+          curl -sSL https://download.sourceclear.com/ci.sh | sh -s **/** -- scan --update-advisor --ws="700tl4W"
           
           
 #           fail-on-cvss: 1
