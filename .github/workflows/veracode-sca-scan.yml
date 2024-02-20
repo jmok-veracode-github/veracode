@@ -38,6 +38,7 @@ jobs:
           create-issues: false
           path: '**/*'
           recursive: true
+          workspaceslug: '700tl4W'
           
           
 #           fail-on-cvss: 1
